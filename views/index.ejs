@@ -1,0 +1,63 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+
+        <div class="container">
+            <br>
+            <form action="/" method="GET">
+                <div class="row">
+                    <div class="col col-md-10">
+                        <select name="categury" class="form-control">
+                        <option  value="all">All</option>
+                        <option value="camira">Camira</option>
+                        <option value="mobile">Mobile</option>
+                </select>
+                    </div>
+
+                    <div class="col col-md-2">
+                        <input type="submit" class="btn btn-warning" value="Filter">
+
+                    </div>
+                </div>
+            </form>
+            <br>
+
+            <% if(validationErorr) {%>
+                <div class="alert alert-danger">
+                    <%= validationErorr.msg%>
+                </div>
+                <% } %>
+                    <% if(products.length === 0) {%>
+                        <div class="alert alert-danger">
+                            There Is NO Product
+                        </div>
+                        <% } else { %>
+                            <div class="row">
+                                <% for(let product of products) {%>
+                                    <div class="col col-12 col-md-2 col-lg-3 col-xl-4">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="<%= product.image%>" class="card-img-top" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <a href="/product/<%= product._id%>">Name: <%= product.name%></a>
+                                                    <p>Price:
+                                                        <%= product.price%>$ </p>
+                                                </h5>
+                                                <form action="/cart" method="POST">
+                                                    <input type="number" name="amount" class="form-control">
+                                                    <input type="hidden" name="name" value="<%= product.name %>">
+                                                    <input type="hidden" name="price" value="<%= product.price %>">
+                                                    <input type="hidden" name="productId" value="<%= product._id %>">
+                                                    <input type="hidden" name="reirectioTo" value="/">
+                                                    <input type="submit" value="Add to carts" class="btn btn-primary">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                            </div>
+                            <%}%>
+        </div>
+
+        <%- include('parts/footer')%>
+            <%- include('parts/footer')%>

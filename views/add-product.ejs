@@ -1,0 +1,57 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+        <div class="container text-center">
+            <h3>ADD PRODUCT</h3>
+            <form action="/admin/add" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="name" placeholder="Name">
+                    <% let vsererror = validatorError.find(err => err.param === 'name') %>
+                        <% if(vsererror) {%>
+                            <p class="alert alert-danger">
+                                <%= vsererror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" name="price" placeholder="Price">
+                    <% let priceerror = validatorError.find(err => err.param === 'price') %>
+                        <% if(priceerror) {%>
+                            <p class="alert alert-danger">
+                                <%= priceerror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="description" placeholder="Description" rows="3"></textarea>
+                    <% let descriptionerror = validatorError.find(err => err.param === 'description') %>
+                        <% if(descriptionerror) {%>
+                            <p class="alert alert-danger">
+                                <%= descriptionerror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="categury">
+                        <option value="" selected>Categury Chose </option>
+                        <option value="camira">Camira</option>
+                        <option value="mobile">Mobile</option>
+                      </select>
+                </div>
+                <div class="form-group">
+                    <input type="file" class="form-control-file" placeholder="Images" name="image">
+                    <% let imageerror = validatorError.find(err => err.param === 'image') %>
+                        <% if(imageerror) {%>
+                            <p class="alert alert-danger">
+                                <%= imageerror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Creat Product" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+
+
+        <%- include('parts/footer')%>

@@ -1,0 +1,51 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+
+        <div class="container  text-center">
+            <h3>Creat Acount</h3>
+            <form action="/signup" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="UserName">
+                    <% let vsererror = validatorError.find(err => err.param === 'username') %>
+                        <% if(vsererror) {%>
+                            <p class="alert alert-danger">
+                                <%= vsererror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail">
+                    <% let emailerror = validatorError.find(err => err.param === 'email') %>
+                        <% if(emailerror) {%>
+                            <p class="alert alert-danger">
+                                <%= emailerror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <% let passworderror = validatorError.find(err => err.param === 'password') %>
+                        <% if(passworderror) {%>
+                            <p class="alert alert-danger">
+                                <%= passworderror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="ConfirmPassword">
+                    <% let confirmPassworderror = validatorError.find(err => err.param === 'confirmPassword') %>
+                        <% if(confirmPassworderror) {%>
+                            <p class="alert alert-danger">
+                                <%= confirmPassworderror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <input type="submit" value="Creat Acount" class="btn btn-primary">
+            </form>
+            <div>
+                Already have acount ?
+                <a href="/login">Login</a>
+            </div>
+        </div>
+        <%- include( 'parts/footer')%>

@@ -1,0 +1,35 @@
+<%- include('parts/header')%>
+    <%- include('parts/navbar')%>
+
+
+        <div class="container  text-center">
+            <h3>Login </h3>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="E-mail">
+                    <% let loginemailerror = loginerrorvalidations.find(err => err.param === 'email') %>
+                        <% if(loginemailerror) {%>
+                            <p class="alert alert-danger">
+                                <%= loginemailerror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <% let loginpassworderror = loginerrorvalidations.find(err => err.param === 'password') %>
+                        <% if(loginpassworderror) {%>
+                            <p class="alert alert-danger">
+                                <%= loginpassworderror.msg%>
+                            </p>
+                            <%}%>
+                </div>
+                <input type="submit" value="Login" class="btn btn-primary">
+            </form>
+            <br>
+            <div>
+                Dont have acount ?
+                <a href="/signup">Create Acount</a>
+            </div>
+
+        </div>
+        <%- include( 'parts/footer')%>
